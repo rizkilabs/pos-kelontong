@@ -2,8 +2,12 @@
 @section('content')
 <div class="container mt-3">
   <h4>Tambah Barang</h4>
-  <form method="POST" action="{{ route('barang.store') }}">
+  <form method="POST" action="{{ route('barang.store') }}" enc>
     @csrf
+    <div class="form-group">
+      <label>Gambar Barang (opsional)</label>
+      <input type="file" name="gambar" class="form-control">
+    </div>
     <div class="form-group">
       <label>Nama Barang</label>
       <input type="text" name="nama" class="form-control" required>

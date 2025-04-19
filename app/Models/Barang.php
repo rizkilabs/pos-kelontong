@@ -14,6 +14,7 @@ class Barang extends Model
         'stok',
         'harga_ecer',
         'harga_grosir',
-        'satuan'
+        'satuan',
+        'gambar'
     ];
 }

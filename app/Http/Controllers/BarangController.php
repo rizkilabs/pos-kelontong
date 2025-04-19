@@ -29,8 +29,24 @@ class BarangController extends Controller
      */
     public function store(Request $request)
     {
-        Barang::create($request->except('_token'));
-        return redirect('/barang')->with('success', 'Barang ditambahkan');
+        try {
+        $data = $request->except('_token');
+
+        if($request->hasFile('gambar')) {
+            $file = $request->file('gambar');
+            $namaFile = time() . '_' . $file->getClientOriginalName();
+            dd(public_path('gambar'));
+            $file->move(public_path('gambar'), $namaFile);
+            $data['gambar'] = $namaFile;
+        }
+
+        Barang::create($data);
+
+        return redirect('/barang')->with('success', 'Barang berhasil ditambahkan');
+
+        } catch (\Exception $e) {
+            return redirect('/barang')->with('error', 'Gagal menambahkan barang: ' . $e->getMessage());
+        }
     }
 
     /**
