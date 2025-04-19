@@ -35,7 +35,6 @@ class BarangController extends Controller
         if($request->hasFile('gambar')) {
             $file = $request->file('gambar');
             $namaFile = time() . '_' . $file->getClientOriginalName();
-            dd(public_path('gambar'));
             $file->move(public_path('gambar'), $namaFile);
             $data['gambar'] = $namaFile;
         }

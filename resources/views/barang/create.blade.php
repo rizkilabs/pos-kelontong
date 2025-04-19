@@ -2,7 +2,7 @@
 @section('content')
 <div class="container mt-3">
   <h4>Tambah Barang</h4>
-  <form method="POST" action="{{ route('barang.store') }}" enc>
+  <form method="POST" action="{{ route('barang.store') }}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
       <label>Gambar Barang (opsional)</label>
