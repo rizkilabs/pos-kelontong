@@ -33,7 +33,7 @@
                 <tr>
                     <td>{{ $item->barang->nama }}</td>
                     <td class="text-right">{{ $item->jumlah }}</td>
-                    <td class="text-right">{{ number_format($item->harga) }}</td>
+                    <td class="text-right">{{ number_format($item->barang->harga_ecer) }}</td>
                     <td class="text-right">{{ number_format($item->subtotal) }}</td>
                 </tr>
                 @endforeach
