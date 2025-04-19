@@ -6,6 +6,7 @@ use App\Models\Barang;
 use App\Models\Penjualan;
 use App\Models\PenjualanDetail;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PenjualanController extends Controller
 {
@@ -60,10 +61,8 @@ class PenjualanController extends Controller
                 $total += $barang->harga_ecer * $jumlah;
             }
 
-            // Hitung kembalian setelah total dihitung
             $kembalian = $bayar - $total;
 
-            // Validasi uang bayar setelah perhitungan total
             if ($kembalian < 0) {
                 return back()->with('error', 'Uang bayar tidak cukup!');
             }
@@ -90,18 +89,39 @@ class PenjualanController extends Controller
                 ]);
             }
 
-            return redirect('/barang')->with('success', 'Transaksi berhasil disimpan.');
+            return redirect()->route('penjualan.sukses', $penjualan->id);
         } catch (\Exception $e) {
             return back()->with('error', 'Gagal menyimpan transaksi: ' . $e->getMessage());
         }
     }
 
+    public function sukses($id)
+    {
+        $penjualan = Penjualan::with('detail.barang')->findOrFail($id);
+        return view('penjualan.sukses', compact('penjualan'));
+        // return redirect()->route('penjualan.cetak', $penjualan->id);
+    }
+
     /**
      * Display the specified resource.
      */
-    public function show(Penjualan $penjualan)
+    public function show($id)
     {
-        //
+        $penjualan = Penjualan::with('detail.barang')->findOrFail($id);
+        return view('penjualan.show', compact('penjualan'));
+    }
+
+    public function cetak($id)
+    {
+        $penjualan = Penjualan::with('detail.barang')->findOrFail($id);
+        return view('penjualan.cetak', compact('penjualan'));
+    }
+
+    public function pdf($id)
+    {
+        $penjualan = Penjualan::with('detail.barang')->findOrFail($id);
+        $pdf = Pdf::loadView('penjualan.cetak', compact('penjualan'));
+        return $pdf->download('struk-penjualan-' . $id . '.pdf');
     }
 
     /**

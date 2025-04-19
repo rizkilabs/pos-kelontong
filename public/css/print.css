@@ -1,0 +1,83 @@
+/* public/css/print.css */
+body {
+    font-family: sans-serif;
+    font-size: 10pt; /* Ukuran font lebih kecil */
+    width: 58mm; /* Lebar kertas thermal standar 58mm atau 80mm */
+    margin: 0 auto; /* Tengahkan konten */
+    line-height: 1.2; /* Jarak antar baris lebih rapat */
+}
+
+.container {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 5px !important; /* Berikan sedikit padding di dalam body */
+}
+
+h4, h5 {
+    text-align: center;
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+    font-size: 1em; /* Ukuran heading lebih kecil */
+    font-weight: bold;
+}
+
+p {
+    margin-bottom: 0.3em;
+    font-size: 0.9em; /* Ukuran paragraf lebih kecil */
+}
+
+hr {
+    border: 1px dashed #333; /* Garis pemisah lebih jelas */
+    margin: 0.5em 0;
+}
+
+table {
+    width: 100%;
+    font-size: 0.8em; /* Ukuran font tabel lebih kecil */
+    border-collapse: collapse;
+    margin-bottom: 0.5em;
+}
+
+th, td {
+    text-align: left;
+    padding: 2px; /* Padding sel lebih kecil */
+    white-space: nowrap; /* Mencegah teks melipat */
+}
+
+th {
+    font-weight: bold;
+    border-bottom: 1px solid #333;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-right {
+    text-align: right;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.small-text {
+    font-size: 0.7em;
+}
+
+.align-right {
+    float: right;
+}
+
+.align-left {
+    float: left;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.mt-0 { margin-top: 0 !important; }
+.mb-0 { margin-bottom: 0 !important; }
