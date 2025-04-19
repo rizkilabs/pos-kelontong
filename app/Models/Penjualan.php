@@ -10,6 +10,8 @@ class Penjualan extends Model
     protected $fillable = [
         'tanggal',
         'total',
+        'bayar',
+        'kembalian',
     ];
 
     public function detail()

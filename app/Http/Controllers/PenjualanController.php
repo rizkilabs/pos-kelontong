@@ -34,9 +34,10 @@ class PenjualanController extends Controller
         try {
             $barang_ids = $request->barang_id;
             $jumlahs = $request->jumlah;
+            $bayar = $request->bayar;
             $total = 0;
+            $kembalian = 0;
 
-            // Pastikan $barang_ids dan $jumlahs adalah array
             if (!is_array($barang_ids)) {
                 $barang_ids = [$barang_ids];
             }
@@ -44,7 +45,6 @@ class PenjualanController extends Controller
                 $jumlahs = [$jumlahs];
             }
 
-            // Pastikan jumlah barang dan jumlah pembelian sesuai
             if (count($barang_ids) !== count($jumlahs)) {
                 return back()->with('error', 'Data barang dan jumlah tidak sinkron.');
             }
@@ -60,9 +60,19 @@ class PenjualanController extends Controller
                 $total += $barang->harga_ecer * $jumlah;
             }
 
+            // Hitung kembalian setelah total dihitung
+            $kembalian = $bayar - $total;
+
+            // Validasi uang bayar setelah perhitungan total
+            if ($kembalian < 0) {
+                return back()->with('error', 'Uang bayar tidak cukup!');
+            }
+
             $penjualan = Penjualan::create([
                 'tanggal' => now(),
                 'total' => $total,
+                'bayar' => $bayar,
+                'kembalian' => $kembalian,
             ]);
 
             foreach ($barang_ids as $i => $id) {
@@ -85,7 +95,6 @@ class PenjualanController extends Controller
             return back()->with('error', 'Gagal menyimpan transaksi: ' . $e->getMessage());
         }
     }
-
 
     /**
      * Display the specified resource.
