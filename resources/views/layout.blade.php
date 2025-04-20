@@ -50,13 +50,11 @@
 
                 <a href="{{ route('penjualan.create') }}" class="{{ request()->is('penjualan*') ? 'active' : '' }}">🛒 Transaksi</a>
 
-                <!-- <a href="{{ route('penjualan.create') }}" -->
-                 <a href="{{ route('penjualan.create') }}"
+                 <a href="{{ route('logout') }}"
                     onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     🚪 Logout
                 </a>
-                <!-- <form id="logout-form" action="{{ route('penjualan.create') }}" method="POST" class="d-none">@csrf</form> -->
-                <form id="logout-form" action="{{ route('penjualan.create') }}" method="POST" class="d-none">@csrf</form>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">@csrf</form>
             </div>
 
             <!-- Main Content -->
