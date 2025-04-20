@@ -66,7 +66,6 @@
 </div>
 
 <script>
-  // Tambah baris barang
   document.getElementById('tambah-barang').addEventListener('click', function() {
     let wrapper = document.getElementById('barang-wrapper');
     let row = wrapper.querySelector('.barang-row').cloneNode(true);
@@ -77,7 +76,6 @@
     wrapper.appendChild(row);
   });
 
-  // Hapus baris barang
   document.addEventListener('click', function(e) {
     if (e.target.classList.contains('remove-barang')) {
       let rows = document.querySelectorAll('.barang-row');
@@ -88,7 +86,6 @@
     }
   });
 
-  // Hitung otomatis semua: harga, subtotal, total, kembalian
   function hitungSemua() {
     let total = 0;
 
@@ -115,9 +112,6 @@
     document.getElementById('kembalian').value = kembalian >= 0 ? kembalian : 0;
   }
 
-
-
-  // Trigger kalkulasi saat ada perubahan
   document.addEventListener('input', hitungSemua);
   document.addEventListener('change', hitungSemua);
 </script>

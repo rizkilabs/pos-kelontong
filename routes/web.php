@@ -16,5 +16,8 @@ Route::post('/penjualan', [PenjualanController::class, 'store'])->name('penjuala
 Route::get('/penjualan/{id}', [PenjualanController::class, 'show'])->name('penjualan.show');
 Route::get('/penjualan/{id}/cetak', [PenjualanController::class, 'cetak'])->name('penjualan.cetak');
 Route::get('/penjualan/{id}/pdf', [PenjualanController::class, 'pdf'])->name('penjualan.pdf');
-ROUTE::get('/penjualan/sukses/{id}', [PenjualanController::class, 'sukses'])->name('penjualan.sukses');
+Route::get('/penjualan/sukses/{id}', [PenjualanController::class, 'sukses'])->name('penjualan.sukses');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
 
