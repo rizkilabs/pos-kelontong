@@ -10,6 +10,13 @@
   <div class="alert alert-danger">{{ session('error') }}</div>
   @endif -->
 
+  @auth
+  @if(auth()->user()->role == 'admin')
+  <a href="/barang">Kelola Barang</a>
+  @endif
+  @endauth
+
+
   <form method="POST" action="{{ route('penjualan.store') }}">
     @csrf
 
